@@ -1,34 +1,33 @@
 package DesafioKotlin
 
 
-private val <E> MutableList<E>.length: Any
-    get() {
-        return 1
-    }
 
-abstract class Curso(nomeCurso: Curso, codigoCurso: Integer, quantidadeMaxAlunos: Integer, val codigoProfessor: Integer) {
 
+abstract class Curso(
+    open var nomeCurso: Curso,
+    var codigoCurso: Integer,
+    open var quantidadeMaxAlunos: Integer,
+    var codigoProfessor: Integer) {
+
+
+    abstract val listaAlunos: MutableList<Aluno>
+    abstract var professorTitular: Any
+    abstract var professorAdjunto: Any
     abstract var novoAlunoMatriculado: Any
     abstract val listaProfessor: MutableList<Curso>
     abstract var listaCurso: MutableList<Curso>
-    abstract var nomeCurso: String
     abstract val codigoDeCurso: Integer
-    abstract val quantidadeMaxAlunos: Integer
     val cursoProfessorTitular: Professor = TODO()
     val cursoProfessorAdjunto: Professor = TODO()
-    var listaAlunosMatriculados: MutableList<Alunos>
+    var listaAlunosMatriculados: MutableList<Aluno>
 
-
-    override fun equals(other: Any?): Boolean {
-        return super.equals(other)
-    }
 
     override fun hashCode(): Int {
         return super.hashCode()
     }
 
 
-    fun adicionarUmAluno(umAlunos: Alunos): Boolean {
+    fun adicionarUmAluno(umAlunos: Aluno): Boolean {
 
         if (adicionandoAluno(umAlunos)) {
             listaAlunosMatriculados.add(umAlunos)
@@ -37,11 +36,7 @@ abstract class Curso(nomeCurso: Curso, codigoCurso: Integer, quantidadeMaxAlunos
         return false
     }
 
-    fun adicionandoAluno(umAlunos: Alunos) =
-        !listaAlunosMatriculados.contains(Char, umAlunos) && (listaAlunosMatriculados.length < quantidadeMaxAlunos)
-
-
-    fun excluirAluno(umAlunos: Alunos) {
+    fun excluirAluno(umAlunos: Aluno) {
         if (listaAlunosMatriculados.contains(umAlunos)) {
             listaAlunosMatriculados.remove(umAlunos)
             println("Aluno ${umAlunos.nomeAluno} excluido com Sucesso")
@@ -50,55 +45,34 @@ abstract class Curso(nomeCurso: Curso, codigoCurso: Integer, quantidadeMaxAlunos
         }
     }
 
+    fun adicionandoAluno(umAlunos: Aluno) =
+        !listaAlunosMatriculados.contains(umAlunos) && (listaAlunosMatriculados.size < quantidadeMaxAlunos)
 
     operator fun Int.compareTo(quantidadeMaxAlunos: Integer): Int {
         return 1
     }
 
-
-    private fun String.remove(umAlunos: Alunos) {
-
+    override fun equals(other: Any?): Boolean {
+        val outroCurso = other as? Curso
+        return when (other) {
+            is Curso -> {
+                this.nomeCurso == outroCurso?.nomeCurso
+            }
+            is Double -> {
+                true
+            }
+            else -> {
+                super.equals(other)
+            }
+        }
     }
 
-    private fun String.contains(umAlunos: Alunos): Boolean {
-        return true
-    }
-
-    operator fun Any.not(): Boolean {
-        return true
-    }
-
-    private fun String.contains(char: Char.Companion, umAlunos: Alunos): Any {
-        return 1
-    }
-
-    private fun String.add(umAlunos: Alunos) {
-
-    }
-
-    abstract fun Curso(curso: Curso, codigoCurso: Integer, quantidadeMaxAlunos: Integer, nomeCurso: Curso): Curso
-    abstract fun Alunos(nomeAluno: String, sobrenomeAluno: String, codigoDeAluno: Integer): Alunos
-    abstract fun Curso(nomeCurso: Curso, codigoCurso: Integer, quantidadeMaxAlunos: Integer): Curso
+    abstract fun ProfessorAdjunto(qtdDeHrMonitoria: Integer, nomeProfessor: String, sobrenomeProfessor: String, tempoDeCasa: Integer, codigoProfessor: Integer): ProfessorAdjunto
 }
 
 private operator fun Any.compareTo(quantidadeMaxAlunos: Integer): Int {
- return 1
+return 1
 }
+     
 
-private operator fun Any.compareTo(quantidadeMaxAlunos: Int): Int {
-    return 1
-}
-
-private fun <E> MutableList<E>.contains(element: Char.Companion, umAluno: E): Boolean {
-    return true
-}
-
-
-
-
-
-
-
-
-
-
+    

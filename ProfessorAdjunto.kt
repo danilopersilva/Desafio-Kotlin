@@ -1,14 +1,14 @@
 package DesafioKotlin
 
-class ProfessorAdjunto(
+abstract class ProfessorAdjunto(
 
-    var qtdDeHrMonitoria: Integer = 0,
+    qtdDeHrMonitoria: Integer,
 
     nomeProfessor: String,
 
     sobrenomeProfessor: String,
 
-    tempoDeCasa: Int,
+    tempoDeCasa: Integer,
 
     codigoProfessor: Integer
 

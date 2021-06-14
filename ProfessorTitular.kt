@@ -1,19 +1,17 @@
 package DesafioKotlin
 
-class ProfessorTitular(
+abstract class ProfessorTitular(
 
-    val especialidade: String = "N/A",
+    especialidade: String = "N/A",
 
     nomeProfessor: String,
 
     sobrenomeProfessor: String,
 
-    tempoDeCasa: Int,
+    tempoDeCasa: Integer,
 
     codigoProfessor: Integer
 
-
-
-):Professor(nomeProfessor,sobrenomeProfessor,tempoDeCasa,codigoProfessor){
+) : Professor(nomeProfessor, sobrenomeProfessor, tempoDeCasa, codigoProfessor) {
 
 }

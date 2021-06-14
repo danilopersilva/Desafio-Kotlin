@@ -1,17 +1,23 @@
 package DesafioKotlin
 
 
-abstract class DigitalHouseManager {
-    val listaAlunosMatriculados: MutableList<Matricula>()
-    val listaAlunos: MutableList<Aluno>()
-    val listaProfessor: MutableList<Professor>()
-    var listaCurso: MutableList<Curso>()
+class DigitalHouseManager {
 
+
+
+   val listaAlunos = MutableList<Aluno>()
+   val listaAlunosMatriculados = MutableList<Matricula>()
+   val listaProfessor = MutableList<Professor>()
+   val listaCurso = MutableList<Curso>()
+
+
+
+    
 
     fun registrarCurso(
         nomeCurso: Curso,
-        codigoCurso: Integer,
-        quantidadeMaxAlunos: Integer
+        codigoCurso: Int,
+        quantidadeMaxAlunos: Int
     ) {
         var novoCurso = Curso(
             nomeCurso = nomeCurso,
@@ -27,9 +33,10 @@ abstract class DigitalHouseManager {
 
     }
 
-    abstract fun Curso(nomeCurso: Curso, codigoCurso: Integer, quantidadeMaxAlunos: Integer)
 
-    fun excluirCurso(codigoCurso: Integer) {
+
+
+    fun excluirCurso(codigoCurso: Int) {
         val excluindoCurso = encontrarCurso(codigoCurso)
         if (excluindoCurso != null) {
             listaCurso.remove(excluindoCurso)
@@ -44,8 +51,8 @@ abstract class DigitalHouseManager {
     fun registrarProfessorAdjunto(
         nome: String,
         sobrenome: String,
-        codigoProfessor: Integer,
-        quantidadeDeHoras: Integer
+        codigoProfessor: Int,
+        quantidadeDeHoras: Int
     ) {
         val novoProfessorAdjunto = ProfessorAdjunto(quantidadeDeHoras, nome, sobrenome, 0, codigoProfessor)
         if (!listaProfessor.contains(novoProfessorAdjunto)) {
@@ -60,7 +67,7 @@ abstract class DigitalHouseManager {
     fun registrarProfessorTitular(
         nomeProfessor: String,
         sobrenomeProfessor: String,
-        codigoProfessor: Integer,
+        codigoProfessor: Int,
         especialidade: String
     ) {
         val novoProfessorTitular =
@@ -74,7 +81,7 @@ abstract class DigitalHouseManager {
         }
     }
 
-    fun excluirProfessor(codigoProfessor: Integer) {
+    fun excluirProfessor(codigoProfessor: Int) {
         val professor = encontrarProfessor(codigoProfessor)
         if (professor != null) {
             listaProfessor.remove(professor)
@@ -84,7 +91,7 @@ abstract class DigitalHouseManager {
 
     }
 
-    fun matricularAluno(nomeAluno: String, sobrenomeAluno: String, codigoAluno: Integer) {
+    fun matricularAluno(nomeAluno: String, sobrenomeAluno: String, codigoAluno: Int) {
         val novoAluno = Aluno(nomeAluno, sobrenomeAluno, codigoAluno)
         if (!listaAlunos.contains(novoAluno)) {
             listaAlunos.add(novoAluno)
@@ -96,7 +103,7 @@ abstract class DigitalHouseManager {
     }
 
 
-    fun matricularAluno(codigoAluno: Integer, codigoCurso: Integer) {
+    fun matricularAluno(codigoAluno: Int, codigoCurso: Int) {
         val aluno = encontrarAluno(codigoAluno)
         val curso = encontrarCurso(codigoCurso)
 
@@ -114,7 +121,7 @@ abstract class DigitalHouseManager {
         }
     }
 
-    fun alocarProfessores(codigoCurso: Integer, codigoProfessorTitular: Integer, codigoProfessorAdjunto: Integer) {
+    fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int) {
         val titular = encontrarProfessor(codigoProfessorTitular)
         val adjunto = encontrarProfessor(codigoProfessorAdjunto)
         val curso = encontrarCurso(codigoCurso)
@@ -134,7 +141,7 @@ abstract class DigitalHouseManager {
         }
     }
 
-    fun encontrarCurso(codigoCurso: Integer): Curso? {
+    fun encontrarCurso(codigoCurso: Int): Curso? {
         var cursoEncontrado: Curso? = null
         listaCurso.forEach { curso ->
             if (curso.codigoCurso == codigoCurso) {
@@ -144,7 +151,7 @@ abstract class DigitalHouseManager {
         return cursoEncontrado
     }
 
-    fun encontrarAluno(codigoAluno: Integer): Aluno? {
+    fun encontrarAluno(codigoAluno: Int): Aluno? {
         var alunoEncontrado: Aluno? = null
         val listaAlunos = listaAlunos
         listaAlunos.forEach { aluno ->
@@ -155,11 +162,11 @@ abstract class DigitalHouseManager {
         return alunoEncontrado
     }
 
-    fun encontrarProfessor(codigoProfessor: Integer): Professor? {
+    fun encontrarProfessor(codigoProfessor: Int): Professor? {
         var professorEncontrado: Professor? = null
         listaProfessor.forEach { professor ->
-            if (professor.codigoProfessor === codigoProfessor) {
-                professorEncontrado == professor
+            if (professor.codigoProfessor == codigoProfessor) {
+                professorEncontrado = professor
             }
         }
         return professorEncontrado
@@ -185,9 +192,14 @@ abstract class DigitalHouseManager {
     }
 }
 
-
+private fun <E> MutableList<E>.add(element: Matricula) {
 
 }
+
+
+
+
+
 
 
 

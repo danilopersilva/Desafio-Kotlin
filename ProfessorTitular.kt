@@ -1,6 +1,6 @@
 package DesafioKotlin
 
-abstract class ProfessorTitular(
+class ProfessorTitular(
 
     especialidade: String = "N/A",
 
@@ -8,10 +8,29 @@ abstract class ProfessorTitular(
 
     sobrenomeProfessor: String,
 
-    tempoDeCasa: Integer,
+    tempoDeCasa: Int,
 
-    codigoProfessor: Integer
+    codigoProfessor: Int
 
 ) : Professor(nomeProfessor, sobrenomeProfessor, tempoDeCasa, codigoProfessor) {
 
+
+    override fun equals(other: Any?): Boolean {
+        val outroProfessorTitular = other as? ProfessorTitular
+        return when (other) {
+            is ProfessorAdjunto -> {
+                this.nomeProfessor == outroProfessorTitular?.nomeProfessor
+            }
+            is Double -> {
+                true
+            }
+            else -> {
+                super.equals(other)
+            }
+        }
+    }
 }
+
+
+
+

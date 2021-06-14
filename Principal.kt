@@ -1,14 +1,15 @@
 package DesafioKotlin
 
 fun main() {
+
     val digitalHouseManager = DigitalHouseManager()
 
-    digitalHouseManager.registrarProfessorTitular("MESINA", "Professor2", 55, "Mobile")
-    digitalHouseManager.registrarProfessorAdjunto("deefef", "Adjunto", 555, 40)
+digitalHouseManager.registrarProfessorTitular("dadsada","asdasdsa",10,"Android")
+    digitalHouseManager.registrarProfessorAdjunto("dfdsfsdf","fsdfsdfdsf",100,0)
 
 
-    digitalHouseManager.alocarProfessores(20001, 5, 55)
-    digitalHouseManager.alocarProfessores(20002, 555, 5555)
+    digitalHouseManager.alocarProfessores(1000,10,100)
+    //digitalHouseManager.alocarProfessores()
 }
 
 

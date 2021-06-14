@@ -3,8 +3,8 @@ package DesafioKotlin
 open class Professor(
     val nomeProfessor: String,
     val sobrenomeProfessor: String,
-    val tempoDeCasa: Integer,
-    var codigoProfessor: Integer
+    var tempoDeCasa: Int,
+    var codigoProfessor: Int
 ) {
     override fun equals(other: Any?): Boolean {
         val outroProfessor = other as? Professor

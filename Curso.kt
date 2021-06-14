@@ -3,23 +3,17 @@ package DesafioKotlin
 
 
 
-abstract class Curso(
+class Curso(
     open var nomeCurso: Curso,
-    var codigoCurso: Integer,
-    open var quantidadeMaxAlunos: Integer,
-    var codigoProfessor: Integer) {
+    var codigoCurso: Int,
+    open var quantidadeMaxAlunos: Int,
+    var professorTitular: Professor? = null,
+    var professorAdjunto: Professor? = null
+) {
 
 
-    abstract val listaAlunos: MutableList<Aluno>
-    abstract var professorTitular: Any
-    abstract var professorAdjunto: Any
-    abstract var novoAlunoMatriculado: Any
-    abstract val listaProfessor: MutableList<Curso>
-    abstract var listaCurso: MutableList<Curso>
-    abstract val codigoDeCurso: Integer
-    val cursoProfessorTitular: Professor = TODO()
-    val cursoProfessorAdjunto: Professor = TODO()
-    var listaAlunosMatriculados: MutableList<Aluno>
+
+    lateinit var listaAlunosMatriculados: MutableList<Aluno>
 
 
     override fun hashCode(): Int {
@@ -66,8 +60,11 @@ abstract class Curso(
             }
         }
     }
+    fun Curso(nomeCurso: Curso, codigoCurso: Int, quantidadeMaxAlunos: Int): Curso {
+TODO()
+    }
 
-    abstract fun ProfessorAdjunto(qtdDeHrMonitoria: Integer, nomeProfessor: String, sobrenomeProfessor: String, tempoDeCasa: Integer, codigoProfessor: Integer): ProfessorAdjunto
+
 }
 
 private operator fun Any.compareTo(quantidadeMaxAlunos: Integer): Int {
